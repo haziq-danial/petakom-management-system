@@ -3,7 +3,7 @@
 
 - Clone the repo
    ```
-   git clone https://github.com/haziq-danial/psm-management-system.git
+   git clone https://github.com/haziq-danial/petakom-management-system.git
    ```
 - Change directory
     ```
