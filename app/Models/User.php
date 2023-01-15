@@ -18,9 +18,13 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'umpid',
         'email',
+        'name',
+        'phone',
+        'address',
         'password',
+        'role'
     ];
 
     /**
@@ -41,4 +45,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function sendPasswordNotification($token) {
+        $url = 'https://userpetakom.test/rest-password?token=' . $token;
+
+        $this->notify(new ResetPasswordNotification($url));
+    }
 }
