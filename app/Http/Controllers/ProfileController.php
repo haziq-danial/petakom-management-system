@@ -46,6 +46,31 @@ class ProfileController extends Controller
         return redirect('edit')->with('message', 'Profile Updated');
     }
 
+    function password(){
+        $data = User::findOrFail(Auth::user()->id);
+        return view('UserProfile.change_password', compact('data'));
+    }
+
+    function changePassword(Request $request){
+        // dd($request);
+        $request->validate([
+            'new_password' => 'required|min:6',
+            'confirm_password' => ['same:new_password']
+        ]);
+
+
+        $data = $request->all();
+
+        $form_data = array(
+            'password' => Hash::make($data['new_password']),
+        );
+
+
+        User::where('id',Auth::user()->id)->update($form_data);
+
+        return redirect('password')->with('message', 'Password Changed');
+    }
+
     function view(){
         $data = User::findOrFail(Auth::user()->id);
         return view('UserProfile.view', compact('data'));

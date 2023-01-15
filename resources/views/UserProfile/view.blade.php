@@ -28,7 +28,8 @@
                         <label>{{ Auth::user()->address }}<label>
                     </div>
                     <div class="form-group mb-3">
-                        <a class="btn btn-primary" href="{{ route('edit') }}">Edit</a>
+                        <a class="btn btn-primary d-inline" href="{{ route('edit') }}">Edit</a>
+                        <a class="btn btn-primary" href="{{ route('password') }}">Change Password</a>
                     </div>
                 </form>
             </div>

@@ -39,6 +39,10 @@ Route::post('user-edit', [ProfileController::class, 'edit_validation'])->name('u
 
 Route::get('view', [ProfileController::class, 'view'])->name('view');
 
+Route::get('password', [ProfileController::class, 'password'])->name('password');
+
+Route::post('change-password', [ProfileController::class, 'changePassword'])->name('user.changePassword');
+
 Route::post('user-view', [ProfileController::class, 'view_profile'])->name('user.view_profile');
 
 Route::get('register_member', [ProfileController::class, 'register_member'])->name('register_member');
