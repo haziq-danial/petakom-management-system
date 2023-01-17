@@ -49,6 +49,10 @@ Route::get('register_member', [ProfileController::class, 'register_member'])->na
 
 Route::post('register', [ProfileController::class, 'member_register'])->name('user.member_register');
 
-Route::get('reset-password', [AuthController::class, 'indexForgotPassword'])->middleware('guest')->name('reset');
+Route::get('forgot-password', [AuthController::class, 'indexForgotPassword'])->middleware('guest')->name('indexForgotPassword');
 
-Route::post('reset', [AuthController::class, 'resetPassword'])->name('user.resetPassword');
+Route::post('forgot-password', [AuthController::class, 'resetPassword'])->middleware('guest')->name('user.resetPassword');
+
+Route::get('indexResetPassword/{token}', [AuthController::class, 'indexResetPassword'])->middleware('guest')->name('indexResetPassword');
+
+Route::post('reset-password', [AuthController::class,'passwordUpdate'])->middleware('guest')->name('user.passwordUpdate');

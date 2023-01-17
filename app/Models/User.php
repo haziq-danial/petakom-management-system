@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Notifications\ResetPasswordNotification;
 
 class User extends Authenticatable
 {
@@ -47,7 +48,7 @@ class User extends Authenticatable
     ];
 
     public function sendPasswordNotification($token) {
-        $url = 'https://petakomsystem.com/reset-password?token=' . $token;
+        $url = 'http://127.0.0.1:8000/indexResetPassword?token=' . $token;
 
         $this->notify(new ResetPasswordNotification($url));
     }

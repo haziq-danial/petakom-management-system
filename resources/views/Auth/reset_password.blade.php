@@ -5,16 +5,16 @@
 <div class="row justify-content-center">
 	<div class="col-md-4">
 
-        @if(session()->has('message'))
+        @if(session()->has('status'))
         <div class="alert alert-success">
-            {{ session()->get('message') }}
+            {{ session()->get('status') }}
         </div>
         @endif
 
 		<div class="card">
 		<div class="card-header">Reset Password</div>
 		<div class="card-body">
-			<form action="{{ route('password.update') }}" method="POST">
+			<form method="POST" action="{{ route('user.passwordUpdate') }}">
 				@csrf
 				<div class="form-group mb-3">
 					<input type="text" name="email" class="form-control" placeholder="Email Address" value="{{ $data->email }}" />
@@ -35,6 +35,9 @@
 						<span class="text-danger">{{ $errors->first('confirm_password') }}</span>
 					@endif
 				</div>
+				<div class="mb-3">
+                <input type="hidden" class="form-control" name="token" value="{{$token}}" >
+            	</div>
 				<div class="d-grid mx-auto">
 					<button type="submit" class="btn btn-primary btn-block">Reset Password</button>
 				</div>

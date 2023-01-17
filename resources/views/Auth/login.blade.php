@@ -41,7 +41,7 @@
 						<button type="subit" class="btn btn-primary btn-block">Login</button>
 					</div>
 				</form>
-				<a class="row justify-content-center" href="{{ route('reset') }}">Forgot Password</a>
+				<a class="row justify-content-center" href="{{ route('indexForgotPassword') }}">Forgot Password</a>
 			</div>
 		</div>
 	</div>
