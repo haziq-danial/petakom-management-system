@@ -47,7 +47,7 @@ class User extends Authenticatable
     ];
 
     public function sendPasswordNotification($token) {
-        $url = 'https://userpetakom.test/rest-password?token=' . $token;
+        $url = 'https://petakomsystem.com/reset-password?token=' . $token;
 
         $this->notify(new ResetPasswordNotification($url));
     }

@@ -30,13 +30,13 @@
 					@endif
 				</div>
                 <div class="form-group mb-3">
-					<input type="password" name="confirmPassword" class="form-control" placeholder="Re-type New Password" />
-					@if($errors->has('confirmPassword'))
-						<span class="text-danger">{{ $errors->first('confirmPassword') }}</span>
+					<input type="password" name="confirm_password" class="form-control" placeholder="Re-type New Password" />
+					@if($errors->has('confirm_password'))
+						<span class="text-danger">{{ $errors->first('confirm_password') }}</span>
 					@endif
 				</div>
 				<div class="d-grid mx-auto">
-					<button type="submit" class="btn btn-primary btn-block">Send Password Reset Link</button>
+					<button type="submit" class="btn btn-primary btn-block">Reset Password</button>
 				</div>
 			</form>
 		</div>
