@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PtkActivityController;
+use App\Http\Controllers\ActivityApprovalController;
+use App\Models\PtkActivityModel;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/welcome', function () {
     return view('welcome');
 });
 
@@ -37,3 +40,12 @@ Route::controller(RegistrationController::class)->group(function(){
     //Route::get('dashboard', 'dashboard')->name('dashboard');
 
 });
+
+Route::get('/', 'App\http\Controllers\PtkActivityController@index')->name('user');
+Route::resource("/PtkActivity", PtkActivityController::class);
+Route::resource("/ActivityApproval", ActivityApprovalController::class);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
