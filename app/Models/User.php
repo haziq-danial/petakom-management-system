@@ -25,7 +25,10 @@ class User extends Authenticatable
         'phone',
         'address',
         'password',
-        'role'
+        'role',
+        'CDN_ID',
+        'CDN_Email',
+        'CDN_Pass',
     ];
 
     /**
@@ -34,7 +37,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
+        'CDN_Pass',
         'remember_token',
     ];
 

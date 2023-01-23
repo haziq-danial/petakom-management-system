@@ -1,8 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
+
+use App\Http\Controllers\PtkActivityController;
+use App\Http\Controllers\ActivityApprovalController;
+use App\Models\PtkActivityModel;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +20,7 @@ use App\Http\Controllers\ProfileController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 
 Route::get('/', function () {
     //return view('welcome');
@@ -56,3 +63,37 @@ Route::post('forgot-password', [AuthController::class, 'resetPassword'])->middle
 Route::get('indexResetPassword/{token}', [AuthController::class, 'indexResetPassword'])->middleware('guest')->name('indexResetPassword');
 
 Route::post('reset-password', [AuthController::class,'passwordUpdate'])->middleware('guest')->name('user.passwordUpdate');
+
+Route::get('/welcome', function () {
+    return view('welcome');
+});
+
+
+Route::controller(LoginController::class)->group(function(){
+
+    Route::get('login', 'index')->name('login');
+
+    Route::get('registration', 'registration')->name('registration');
+
+    Route::get('logout', 'logout')->name('logout');
+
+});
+
+Route::controller(RegistrationController::class)->group(function(){
+
+    Route::post('validate_registration', 'validate_registration')->name('user.validate_registration');
+
+    //Route::post('validate_login', 'validate_login')->name('user.validate_login');
+
+    //Route::get('dashboard', 'dashboard')->name('dashboard');
+
+});
+
+Route::get('/', 'App\http\Controllers\PtkActivityController@index')->name('user');
+Route::resource("/PtkActivity", PtkActivityController::class);
+Route::resource("/ActivityApproval", ActivityApprovalController::class);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
