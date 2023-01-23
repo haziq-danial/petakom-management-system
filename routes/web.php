@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PtkActivityController;
+use App\Http\Controllers\ActivityApprovalController;
 use App\Models\PtkActivityModel;
 
 /*
@@ -21,6 +22,7 @@ Route::get('/welcome', function () {
 
 Route::get('/', 'App\http\Controllers\PtkActivityController@index')->name('user');
 Route::resource("/PtkActivity", PtkActivityController::class);
+Route::resource("/ActivityApproval", ActivityApprovalController::class);
 
 Auth::routes();
 

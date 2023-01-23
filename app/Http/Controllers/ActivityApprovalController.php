@@ -5,13 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\PtkActivityModel;
 use Illuminate\Http\Request;
 
-class PtkActivityController extends Controller
+class ActivityApprovalController extends Controller
 {
-    
     public function index()
     {
         $activities = PtkActivityModel::all();
-        return view('ManagePtkActivity.UserActivityMenu')->with('activities', $activities);
+        return view('ManagePtkActivity.ActivityApproval')->with('activities', $activities);
     
     }
 
@@ -26,14 +25,14 @@ class PtkActivityController extends Controller
     {
         $input = $request->all();
         PtkActivityModel::create($input);
-        return redirect('PtkActivity')->with('flash_message', 'Activity Added!'); 
+        return redirect('ActivityApproval')->with('flash_message', 'Activity Added!'); 
     }
 
     
     public function show($id)
     {
         $activity = PtkActivityModel::find($id);
-        return view('ManagePtkActivity.ViewActivity')->with('activities', $activity);
+        return view('ManagePtkActivity.ViewApproval')->with('activities', $activity);
     }
 
     
@@ -60,5 +59,3 @@ class PtkActivityController extends Controller
         return redirect('PtkActivity')->with('flash_message', 'activity deleted!'); 
     }
 }
-
-

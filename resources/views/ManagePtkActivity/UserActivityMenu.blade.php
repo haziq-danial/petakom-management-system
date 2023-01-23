@@ -11,7 +11,9 @@
                     </div>
                     <div class="card-body">
                         <a href="{{ url('/PtkActivity/create') }}" class="btn btn-success btn-sm" title="Add New Student">
-                            <i class="fa fa-plus" aria-hidden="true"></i> Add New
+                            <i class="fa fa-plus" aria-hidden="true"></i> Add New Activity
+                        </a>
+                        <a href="{{ url('/PtkActivity/approval') }}" title="Approval Activity"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Approval Status</button>
                         </a>
                         <br/>
                         <br/>
