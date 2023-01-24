@@ -17,7 +17,6 @@ yarn-error.log
 /.idea
 /.vscode
 
-/public/build/
-/public/dist/
-/public/plugins/
-/public/form-builder/
+
+/public/dist
+/public/plugins
