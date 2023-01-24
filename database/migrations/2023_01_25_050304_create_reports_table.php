@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('reports', function (Blueprint $table) {
             $table->id('ProposalID');
             $table->unsignedBigInteger('OwnerID');
+            $table->text('title');
             $table->longText('report_content');
             $table->boolean('hosd_approval');
             $table->boolean('coodinator_approval');

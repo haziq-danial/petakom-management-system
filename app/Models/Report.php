@@ -13,6 +13,7 @@ class Report extends Model
 
     protected $fillable = [
         'OwnerID',
+        'title',
         'report_content',
         'hosd_approval',
         'coordinator_approval',

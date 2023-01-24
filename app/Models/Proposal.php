@@ -13,6 +13,7 @@ class Proposal extends Model
 
     protected $fillable = [
         'OwnerID',
+        'title',
         'proposal_content',
         'hosd_approval',
         'coodinator_approval',
