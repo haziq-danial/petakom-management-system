@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('reports', function (Blueprint $table) {
-            $table->id('ProposalID');
+            $table->id('ReportID');
             $table->unsignedBigInteger('OwnerID');
             $table->text('title');
             $table->longText('report_content');
