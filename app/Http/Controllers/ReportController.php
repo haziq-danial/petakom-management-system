@@ -12,7 +12,7 @@ class ReportController extends Controller
 {
     public function index()
     {
-        $role = 'Student';
+        $role = 'Coordinator';
         $count = 0;
 //        $user = User::find(Auth::id());
 
@@ -73,7 +73,7 @@ class ReportController extends Controller
         $reportModel->title = $request->title;
         $reportModel->report_content = $request->report_content;
         $reportModel->hosd_approval = ApprovalLevel::PENDING;
-        $reportModel->coodinator_approval = ApprovalLevel::PENDING;
+        $reportModel->coordinator_approval = ApprovalLevel::PENDING;
         $reportModel->dean_approval = ApprovalLevel::PENDING;
 
         $reportModel->save();
@@ -97,7 +97,7 @@ class ReportController extends Controller
         $reportModel->title = $request->title;
         $reportModel->report_content = $request->report_content;
         $reportModel->hosd_approval = ApprovalLevel::PENDING;
-        $reportModel->coodinator_approval = ApprovalLevel::PENDING;
+        $reportModel->coordinator_approval = ApprovalLevel::PENDING;
         $reportModel->dean_approval = ApprovalLevel::PENDING;
 
         $reportModel->save();
@@ -124,7 +124,7 @@ class ReportController extends Controller
     {
         $reportModel = Report::where('ReportID', $ReportID)->first();
 
-        $reportModel->coodinator_approval = ApprovalLevel::APPROVED;
+        $reportModel->coordinator_approval = ApprovalLevel::APPROVED;
         $reportModel->save();
 
         return redirect()->route('manage-report.index');
@@ -154,7 +154,7 @@ class ReportController extends Controller
     {
         $reportModel = Report::where('ReportID', $ReportID)->first();
 
-        $reportModel->coodinator_approval = ApprovalLevel::REJECTED;
+        $reportModel->coordinator_approval = ApprovalLevel::REJECTED;
         $reportModel->save();
 
         return redirect()->route('manage-report.index');

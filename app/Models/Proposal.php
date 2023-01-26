@@ -16,7 +16,7 @@ class Proposal extends Model
         'title',
         'proposal_content',
         'hosd_approval',
-        'coodinator_approval',
+        'coordinator_approval',
         'dean_approval'
     ];
 }

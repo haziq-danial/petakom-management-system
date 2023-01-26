@@ -144,7 +144,7 @@
 
         function statusReport(data) {
             console.log(data);
-            var coo_status = data.coodinator_approval;
+            var coo_status = data.coordinator_approval;
             var hosd_status = data.hosd_approval;
             var dean_status = data.dean_approval;
 

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('title');
             $table->longText('report_content');
             $table->integer('hosd_approval');
-            $table->integer('coodinator_approval');
+            $table->integer('coordinator_approval');
             $table->integer('dean_approval');
             $table->timestamps();
         });

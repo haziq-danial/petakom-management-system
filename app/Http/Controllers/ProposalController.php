@@ -73,7 +73,7 @@ class ProposalController extends Controller
         $proposalModel->title = $request->title;
         $proposalModel->proposal_content = $request->proposal_content;
         $proposalModel->hosd_approval = ApprovalLevel::PENDING;
-        $proposalModel->coodinator_approval = ApprovalLevel::PENDING;
+        $proposalModel->coordinator_approval = ApprovalLevel::PENDING;
         $proposalModel->dean_approval = ApprovalLevel::PENDING;
 
         $proposalModel->save();
@@ -97,7 +97,7 @@ class ProposalController extends Controller
         $proposalModel->title = $request->title;
         $proposalModel->proposal_content = $request->proposal_content;
         $proposalModel->hosd_approval = ApprovalLevel::PENDING;
-        $proposalModel->coodinator_approval = ApprovalLevel::PENDING;
+        $proposalModel->coordinator_approval = ApprovalLevel::PENDING;
         $proposalModel->dean_approval = ApprovalLevel::PENDING;
 
         $proposalModel->save();
@@ -124,7 +124,7 @@ class ProposalController extends Controller
     {
         $proposalModel = Proposal::where('ProposalID', $ProposalID)->first();
 
-        $proposalModel->coodinator_approval = ApprovalLevel::APPROVED;
+        $proposalModel->coordinator_approval = ApprovalLevel::APPROVED;
         $proposalModel->save();
 
         return redirect()->route('manage-proposal.index');
@@ -154,7 +154,7 @@ class ProposalController extends Controller
     {
         $proposalModel = Proposal::where('ProposalID', $ProposalID)->first();
 
-        $proposalModel->coodinator_approval = ApprovalLevel::REJECTED;
+        $proposalModel->coordinator_approval = ApprovalLevel::REJECTED;
         $proposalModel->save();
 
         return redirect()->route('manage-proposal.index');

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Generate Proposal')
+@section('title', 'Proposal Applicants')
 
 @section('stylesheet')
     <!-- Google Font: Source Sans Pro -->
@@ -64,19 +64,9 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Generate Report</h1>
+                    <h1>Proposal Applications</h1>
                 </div>
 
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item">
-                            <a href="{{ route('manage-proposal.create') }}" class="btn btn-block btn-success">
-                                <i class="fa fa-plus"></i>
-                                Add proposal
-                            </a>
-                        </li>
-                    </ol>
-                </div>
             </div>
         </div>
     </section>
@@ -84,7 +74,7 @@
     <section class="content">
         <div class="card card-primary">
             <div class="card-header">
-                <h3 class="card-title">My Proposals</h3>
+                <h3 class="card-title">All Proposals</h3>
             </div>
             <div class="card-body">
                 <table class="table table-striped projects">
@@ -144,7 +134,7 @@
 
         function statusReport(data) {
             console.log(data);
-            var coo_status = data.coodinator_approval;
+            var coo_status = data.coordinator_approval;
             var hosd_status = data.hosd_approval;
             var dean_status = data.dean_approval;
 
