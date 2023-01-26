@@ -13,7 +13,7 @@
                 {{--                <img src="{{ asset('../img/01-Logo UMP_Full Color.png') }}" class="img-size-32 elevation-2" alt="User Image">--}}
             </div>
             <div class="info">
-                <a href="{{ url('/') }}" class="d-block">PMS</a>
+                <a href="{{ url('/') }}" class="d-block">SMHTS</a>
             </div>
         </div>
 
@@ -33,13 +33,13 @@
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-users-cog"></i>
+                        <i class="nav-icon fas fa-clipboard-list"></i>
                         <p>
-                            Manage Users
+                            Manage Profile
+
                         </p>
                     </a>
                 </li>
-
 
                 <li class="nav-item">
                     <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav-link">
