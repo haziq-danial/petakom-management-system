@@ -14,7 +14,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Report Status</h4>
+                    <h4 class="modal-title">Proposal Status</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -102,6 +102,8 @@
                                     </button>
                                     <div class="dropdown-menu" role="menu">
                                         <a class="dropdown-item" href="{{ route('manage-report.view', $report->ReportID) }}">View report</a>
+                                        <a class="dropdown-item" href="{{ route('manage-report.approve', $report->ReportID) }}">Approve report</a>
+                                        <a class="dropdown-item" href="{{ route('manage-report.reject', $report->ReportID) }}">Reject report</a>
                                     </div>
                                 </div>
                             </td>
@@ -133,7 +135,7 @@
 
         function statusReport(data) {
             console.log(data);
-            var coo_status = data.coodinator_approval;
+            var coo_status = data.coordinator_approval;
             var hosd_status = data.hosd_approval;
             var dean_status = data.dean_approval;
 

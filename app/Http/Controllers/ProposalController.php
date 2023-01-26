@@ -9,11 +9,13 @@ use Illuminate\Support\Facades\Auth;
 
 class ProposalController extends Controller
 {
+
+    public $role = 'Student';
     public function index()
     {
 //        return view('GenerateProposal.index', ['proposals' => $proposalModel]);
 
-        $role = 'Student';
+//        $role = 'Coordinator';
         $count = 0;
 //        $user = User::find(Auth::id());
 
@@ -21,13 +23,13 @@ class ProposalController extends Controller
 //        $proposalModel = Report::where('OwnerID', Auth::id())->get();
 
 
-        if ($role === 'Student' || $role === 'Lecturer' || $role === 'PETAKOM Committee') {
+        if ($this->role === 'Student' || $this->role === 'Lecturer' || $this->role === 'PETAKOM Committee') {
             $proposals = Proposal::where('OwnerID', 1)->get();
 
             return view('GenerateProposal.index', compact('proposals', 'count'));
         }
 
-        if ($role === 'Coordinator') {
+        if ($this->role === 'Coordinator') {
             $proposals = Proposal::where('coordinator_approval', ApprovalLevel::PENDING)
                 ->where('hosd_approval', ApprovalLevel::PENDING)
                 ->where('dean_approval', ApprovalLevel::PENDING)->get();
@@ -35,7 +37,7 @@ class ProposalController extends Controller
             return view('GenerateProposal.index-approval', compact('proposals', 'count'));
         }
 
-        if ($role === 'Head of Student Development') {
+        if ($this->role === 'Head of Student Development') {
             $proposals = Proposal::where('coordinator_approval', ApprovalLevel::APPROVED)
                 ->where('hosd_approval', ApprovalLevel::PENDING)
                 ->where('dean_approval', ApprovalLevel::PENDING)->get();
@@ -43,7 +45,7 @@ class ProposalController extends Controller
             return view('GenerateProposal.index-approval', compact('proposals', 'count'));
         }
 
-        if ($role === 'Dean') {
+        if ($this->role === 'Dean') {
             $proposals = Proposal::where('coordinator_approval', ApprovalLevel::APPROVED)
                 ->where('hosd_approval', ApprovalLevel::APPROVED)
                 ->where('dean_approval', ApprovalLevel::PENDING)->get();
@@ -105,9 +107,38 @@ class ProposalController extends Controller
         return redirect()->route('manage-proposal.index');
     }
 
-    public function destroy($ProposalID)
+    public function approve($ReportID)
     {
+        if ($this->role === 'Coordinator') {
+            $this->coordinatorApproval($ReportID);
+        }
 
+        if ($this->role === 'Head of Student Development') {
+            $this->hosdApproval($ReportID);
+        }
+
+        if ($this->role === 'Dean') {
+            $this->deanApproval($ReportID);
+        }
+
+        return redirect()->route('manage-proposal.index');
+    }
+
+    public function reject($ReportID)
+    {
+        if ($this->role === 'Coordinator') {
+            $this->coordinatorReject($ReportID);
+        }
+
+        if ($this->role === 'Head of Student Development') {
+            $this->hosdReject($ReportID);
+        }
+
+        if ($this->role === 'Dean') {
+            $this->deanReject($ReportID);
+        }
+
+        return redirect()->route('manage-proposal.index');
     }
 
     public function hosdApproval($ProposalID)
@@ -117,7 +148,7 @@ class ProposalController extends Controller
         $proposalModel->hosd_approval = ApprovalLevel::APPROVED;
         $proposalModel->save();
 
-        return redirect()->route('manage-proposal.index');
+
     }
 
     public function coordinatorApproval($ProposalID)
@@ -127,7 +158,7 @@ class ProposalController extends Controller
         $proposalModel->coordinator_approval = ApprovalLevel::APPROVED;
         $proposalModel->save();
 
-        return redirect()->route('manage-proposal.index');
+
     }
 
     public function deanApproval($ProposalID)
@@ -137,7 +168,7 @@ class ProposalController extends Controller
         $proposalModel->dean_approval = ApprovalLevel::APPROVED;
         $proposalModel->save();
 
-        return redirect()->route('manage-proposal.index');
+
     }
 
     public function hosdReject($ProposalID)
@@ -147,7 +178,7 @@ class ProposalController extends Controller
         $proposalModel->hosd_approval = ApprovalLevel::REJECTED;
         $proposalModel->save();
 
-        return redirect()->route('manage-proposal.index');
+
     }
 
     public function coordinatorReject($ProposalID)
@@ -157,7 +188,7 @@ class ProposalController extends Controller
         $proposalModel->coordinator_approval = ApprovalLevel::REJECTED;
         $proposalModel->save();
 
-        return redirect()->route('manage-proposal.index');
+
     }
 
     public function deanReject($ProposalID)
@@ -167,6 +198,6 @@ class ProposalController extends Controller
         $proposalModel->dean_approval = ApprovalLevel::REJECTED;
         $proposalModel->save();
 
-        return redirect()->route('manage-proposal.index');
+
     }
 }

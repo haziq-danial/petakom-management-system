@@ -10,9 +10,12 @@ use Illuminate\Support\Facades\Auth;
 
 class ReportController extends Controller
 {
+
+    public $role = 'Lecturer';
+
     public function index()
     {
-        $role = 'Coordinator';
+
         $count = 0;
 //        $user = User::find(Auth::id());
 
@@ -20,13 +23,13 @@ class ReportController extends Controller
 //        $proposalModel = Report::where('OwnerID', Auth::id())->get();
 
 
-        if ($role === 'Student' || $role === 'Lecturer' || $role === 'PETAKOM Committee') {
+        if ($this->role === 'Student' || $this->role === 'Lecturer' || $this->role === 'PETAKOM Committee') {
             $reports = Report::where('OwnerID', 1)->get();
 //            dd($reportModel);
             return view('GenerateReport.index', compact('reports', 'count'));
         }
 
-        if ($role === 'Coordinator') {
+        if ($this->role === 'Coordinator') {
             $reports = Report::where('coordinator_approval', ApprovalLevel::PENDING)
                 ->where('hosd_approval', ApprovalLevel::PENDING)
                 ->where('dean_approval', ApprovalLevel::PENDING)->get();
@@ -34,7 +37,7 @@ class ReportController extends Controller
             return view('GenerateReport.index-approval', compact('reports', 'count'));
         }
 
-        if ($role === 'Head of Student Development') {
+        if ($this->role === 'Head of Student Development') {
             $reports = Report::where('coordinator_approval', ApprovalLevel::APPROVED)
                 ->where('hosd_approval', ApprovalLevel::PENDING)
                 ->where('dean_approval', ApprovalLevel::PENDING)->get();
@@ -42,7 +45,7 @@ class ReportController extends Controller
             return view('GenerateReport.index-approval', compact('reports', 'count'));
         }
 
-        if ($role === 'Dean') {
+        if ($this->role === 'Dean') {
             $reports = Report::where('coordinator_approval', ApprovalLevel::APPROVED)
                 ->where('hosd_approval', ApprovalLevel::APPROVED)
                 ->where('dean_approval', ApprovalLevel::PENDING)->get();
@@ -105,19 +108,47 @@ class ReportController extends Controller
         return redirect()->route('manage-report.index');
     }
 
-    public function destroy($ReportID)
+    public function approve($ReportID)
     {
+        if ($this->role === 'Coordinator') {
+            $this->coordinatorApproval($ReportID);
+        }
 
+        if ($this->role === 'Head of Student Development') {
+            $this->hosdApproval($ReportID);
+        }
+
+        if ($this->role === 'Dean') {
+            $this->deanApproval($ReportID);
+        }
+
+        return redirect()->route('manage-report.index');
+    }
+
+    public function reject($ReportID)
+    {
+        if ($this->role === 'Coordinator') {
+            $this->coordinatorReject($ReportID);
+        }
+
+        if ($this->role === 'Head of Student Development') {
+            $this->hosdReject($ReportID);
+        }
+
+        if ($this->role === 'Dean') {
+            $this->deanReject($ReportID);
+        }
+
+        return redirect()->route('manage-report.index');
     }
 
     public function hosdApproval($ReportID)
     {
-        $reportModel = Report::where('ProposalID', $ReportID)->first();
+        $reportModel = Report::where('ReportID', $ReportID)->first();
 
         $reportModel->hosd_approval = ApprovalLevel::APPROVED;
         $reportModel->save();
 
-        return redirect()->route('manage-report.index');
     }
 
     public function coordinatorApproval($ReportID)
@@ -127,7 +158,6 @@ class ReportController extends Controller
         $reportModel->coordinator_approval = ApprovalLevel::APPROVED;
         $reportModel->save();
 
-        return redirect()->route('manage-report.index');
     }
 
     public function deanApproval($ReportID)
@@ -137,7 +167,6 @@ class ReportController extends Controller
         $reportModel->dean_approval = ApprovalLevel::APPROVED;
         $reportModel->save();
 
-        return redirect()->route('manage-report.index');
     }
 
     public function hosdReject($ReportID)
@@ -147,7 +176,6 @@ class ReportController extends Controller
         $reportModel->hosd_approval = ApprovalLevel::REJECTED;
         $reportModel->save();
 
-        return redirect()->route('manage-report.index');
     }
 
     public function coordinatorReject($ReportID)
@@ -157,7 +185,6 @@ class ReportController extends Controller
         $reportModel->coordinator_approval = ApprovalLevel::REJECTED;
         $reportModel->save();
 
-        return redirect()->route('manage-report.index');
     }
 
     public function deanReject($ReportID)
@@ -167,6 +194,5 @@ class ReportController extends Controller
         $reportModel->dean_approval = ApprovalLevel::REJECTED;
         $reportModel->save();
 
-        return redirect()->route('manage-report.index');
     }
 }

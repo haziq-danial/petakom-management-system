@@ -31,13 +31,9 @@ Route::group(['prefix' => 'manage-report', 'as' => 'manage-report.'], function (
 
     Route::get('/view/{ReportID}', [ReportController::class, 'view'])->name('view');
 
-    Route::get('/hosd-approval/{ReportID}', [ReportController::class, 'hosdApproval'])->name('hosd-aproval');
-    Route::get('/coordinator-approval/{ReportID}', [ReportController::class, 'coordinatorApproval'])->name('coordinator-approval');
-    Route::get('/dean-approval/{ReportID}', [ReportController::class, 'deanApproval'])->name('dean-approval');
+    Route::get('/approve/{ReportID}', [ReportController::class, 'approve'])->name('approve');
 
-    Route::get('/hosd-reject/{ReportID}', [ReportController::class, 'hosdReject'])->name('hosd-reject');
-    Route::get('/coordinator-reject/{ReportID}', [ReportController::class, 'coordinatorReject'])->name('coordinator-reject');
-    Route::get('/dean-reject/{ReportID}', [ReportController::class, 'deanReject'])->name('dean-reject');
+    Route::get('/reject/{ReportID}', [ReportController::class, 'reject'])->name('reject');
 });
 
 Route::group(['prefix' => 'manage-proposal', 'as' => 'manage-proposal.'], function (){
@@ -51,12 +47,8 @@ Route::group(['prefix' => 'manage-proposal', 'as' => 'manage-proposal.'], functi
 
     Route::get('/view/{ProposalID}', [ProposalController::class, 'view'])->name('view');
 
-    Route::get('/hosd-approval/{ProposalID}', [ProposalController::class, 'hosdApproval'])->name('hosd-aproval');
-    Route::get('/coordinator-approval/{ProposalID}', [ProposalController::class, 'coordinatorApproval'])->name('coordinator-approval');
-    Route::get('/dean-approval/{ProposalID}', [ProposalController::class, 'deanApproval'])->name('dean-approval');
+    Route::get('/approve/{ProposalID}', [ProposalController::class, 'approve'])->name('approve');
 
-    Route::get('/hosd-reject/{ProposalID}', [ProposalController::class, 'hosdReject'])->name('hosd-reject');
-    Route::get('/coordinator-reject/{ProposalID}', [ProposalController::class, 'coordinatorReject'])->name('coordinator-reject');
-    Route::get('/dean-reject/{ProposalID}', [ProposalController::class, 'deanReject'])->name('dean-reject');
+    Route::get('/reject/{ReportID}', [ProposalController::class, 'reject'])->name('reject');
 });
 
