@@ -36,6 +36,7 @@
                         <i class="nav-icon fas fa-clipboard-list"></i>
                         <p>
                             Manage Profile
+
                         </p>
                     </a>
                 </li>
