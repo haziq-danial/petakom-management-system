@@ -1,3 +1,4 @@
+<a href="{{ route('manage-bulletin.index') }}">Bulletin</a><br>
 <button onclick="myFunction('faculty')">Faculty</button>
 <button onclick="myFunction('petakom')">PETAKOM</button>
 <div id="faculty" style="display: none">

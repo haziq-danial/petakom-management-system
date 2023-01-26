@@ -1,3 +1,4 @@
+<a href="{{ route('manage-bulletin.index') }}">Bulletin</a> > <a href="{{ route('manage-bulletin.add') }}">Add Bulletin</a><br>
 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
     Add Bulletin
 </h2>

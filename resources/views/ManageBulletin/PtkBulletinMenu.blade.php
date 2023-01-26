@@ -4,6 +4,7 @@
         <?php session()->forget('message'); ?>
     </div>
 @endif
+<a href="{{ route('manage-bulletin.index') }}">Bulletin</a><br>
 <a href="{{ route('manage-bulletin.add') }}">Add</a>
 
 <form action="{{ route('manage-bulletin.search') }}" method="GET">
@@ -29,6 +30,9 @@
             Date
         </th>
         <th>
+            Expited Date
+        </th>
+        <th>
             Action
         </th>
     </tr>
@@ -41,6 +45,7 @@
             <td >{{ $bulletin->title }}</td>
             <td >{{ $bulletin->posted_by }}</td>
             <td >{{ $bulletin->created_at->toDateString() }}</td>
+            <td >{{ $bulletin->expired_at }}</td>
             <td >
                 <a href="{{ route('manage-bulletin.view', $bulletin->bulletin_id) }}">
                     <i class></i>

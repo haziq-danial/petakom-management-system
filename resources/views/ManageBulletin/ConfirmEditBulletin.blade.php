@@ -1,3 +1,4 @@
+<a href="{{ route('manage-bulletin.index') }}">Bulletin</a> > <b>Edit Bulletin</b> > <b>Confirm Edit Bulletin</b><br>
 <h2 >
     Confirm Edit bulletin
 </h2>
