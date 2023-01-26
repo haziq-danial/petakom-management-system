@@ -102,25 +102,25 @@ Route::group(['prefix' => 'manage-proposal', 'as' => 'manage-proposal.'], functi
     Route::get('/reject/{ReportID}', [ProposalController::class, 'reject'])->name('reject');
 });
 
-Route::controller(LoginController::class)->group(function(){
-
-    Route::get('login', 'index')->name('login');
-
-    Route::get('registration', 'registration')->name('registration');
-
-    Route::get('logout', 'logout')->name('logout');
-
-});
-
-Route::controller(RegistrationController::class)->group(function(){
-
-    Route::post('validate_registration', 'validate_registration')->name('user.validate_registration');
-
-    //Route::post('validate_login', 'validate_login')->name('user.validate_login');
-
-    //Route::get('dashboard', 'dashboard')->name('dashboard');
-
-});
+//Route::controller(LoginController::class)->group(function(){
+//
+//    Route::get('login', 'index')->name('login');
+//
+//    Route::get('registration', 'registration')->name('registration');
+//
+//    Route::get('logout', 'logout')->name('logout');
+//
+//});
+//
+//Route::controller(RegistrationController::class)->group(function(){
+//
+//    Route::post('validate_registration', 'validate_registration')->name('user.validate_registration');
+//
+//    //Route::post('validate_login', 'validate_login')->name('user.validate_login');
+//
+//    //Route::get('dashboard', 'dashboard')->name('dashboard');
+//
+//});
 
 Route::get('/', 'App\http\Controllers\PtkActivityController@index')->name('user');
 Route::resource("/PtkActivity", PtkActivityController::class);

@@ -1,5 +1,5 @@
 <!-- Main Sidebar Container -->
-<form id="logout-form" action="#" method="POST" style="display: none;">
+<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
     {{ csrf_field() }}
 </form>
 
@@ -13,7 +13,7 @@
                 {{--                <img src="{{ asset('../img/01-Logo UMP_Full Color.png') }}" class="img-size-32 elevation-2" alt="User Image">--}}
             </div>
             <div class="info">
-                <a href="{{ url('/') }}" class="d-block">SMHTS</a>
+                <a href="{{ url('/') }}" class="d-block">PMS</a>
             </div>
         </div>
 
