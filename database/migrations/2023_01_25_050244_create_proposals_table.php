@@ -18,9 +18,9 @@ return new class extends Migration
             $table->unsignedBigInteger('OwnerID');
             $table->text('title');
             $table->longText('proposal_content');
-            $table->boolean('hosd_approval');
-            $table->boolean('coodinator_approval');
-            $table->boolean('dean_approval');
+            $table->integer('hosd_approval');
+            $table->integer('coodinator_approval');
+            $table->integer('dean_approval');
             $table->timestamps();
         });
     }
