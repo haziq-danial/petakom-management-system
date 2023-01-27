@@ -11,11 +11,13 @@ use Illuminate\Support\Facades\Auth;
 class ReportController extends Controller
 {
 
-    public $role = 'Lecturer';
+    public $role = '';
+    public $OwnerID = 0;
+
 
     public function index()
     {
-
+//        dd(Auth::user()->role);
         $count = 0;
 //        $user = User::find(Auth::id());
 
@@ -23,13 +25,13 @@ class ReportController extends Controller
 //        $proposalModel = Report::where('OwnerID', Auth::id())->get();
 
 
-        if ($this->role === 'Student' || $this->role === 'Lecturer' || $this->role === 'PETAKOM Committee') {
-            $reports = Report::where('OwnerID', 1)->get();
+        if (Auth::user()->role === 'Student' || Auth::user()->role === 'Lecturer' || Auth::user()->role === 'PETAKOM Committee') {
+            $reports = Report::where('OwnerID', Auth::id())->get();
 //            dd($reportModel);
             return view('GenerateReport.index', compact('reports', 'count'));
         }
 
-        if ($this->role === 'Coordinator') {
+        if (Auth::user()->role === 'Coordinator') {
             $reports = Report::where('coordinator_approval', ApprovalLevel::PENDING)
                 ->where('hosd_approval', ApprovalLevel::PENDING)
                 ->where('dean_approval', ApprovalLevel::PENDING)->get();
@@ -37,7 +39,7 @@ class ReportController extends Controller
             return view('GenerateReport.index-approval', compact('reports', 'count'));
         }
 
-        if ($this->role === 'Head of Student Development') {
+        if (Auth::user()->role === 'Head of Student Development') {
             $reports = Report::where('coordinator_approval', ApprovalLevel::APPROVED)
                 ->where('hosd_approval', ApprovalLevel::PENDING)
                 ->where('dean_approval', ApprovalLevel::PENDING)->get();
@@ -45,7 +47,7 @@ class ReportController extends Controller
             return view('GenerateReport.index-approval', compact('reports', 'count'));
         }
 
-        if ($this->role === 'Dean') {
+        if (Auth::user()->role === 'Dean') {
             $reports = Report::where('coordinator_approval', ApprovalLevel::APPROVED)
                 ->where('hosd_approval', ApprovalLevel::APPROVED)
                 ->where('dean_approval', ApprovalLevel::PENDING)->get();
@@ -71,8 +73,8 @@ class ReportController extends Controller
 //        dd($request);
         $reportModel = new Report;
 
-//        $reportModel->OwnerID = Auth::id();
-        $reportModel->OwnerID = 1;
+        $reportModel->OwnerID = Auth::id();
+//        $reportModel->OwnerID = $this->OwnerID;
         $reportModel->title = $request->title;
         $reportModel->report_content = $request->report_content;
         $reportModel->hosd_approval = ApprovalLevel::PENDING;
@@ -95,8 +97,8 @@ class ReportController extends Controller
     {
         $reportModel = Report::find($ReportID);
 
-//        $reportModel->OwnerID = Auth::id();
-        $reportModel->OwnerID = 1;
+        $reportModel->OwnerID = Auth::id();
+//        $reportModel->OwnerID = $this->OwnerID;
         $reportModel->title = $request->title;
         $reportModel->report_content = $request->report_content;
         $reportModel->hosd_approval = ApprovalLevel::PENDING;
@@ -110,15 +112,15 @@ class ReportController extends Controller
 
     public function approve($ReportID)
     {
-        if ($this->role === 'Coordinator') {
+        if (Auth::user()->role === 'Coordinator') {
             $this->coordinatorApproval($ReportID);
         }
 
-        if ($this->role === 'Head of Student Development') {
+        if (Auth::user()->role === 'Head of Student Development') {
             $this->hosdApproval($ReportID);
         }
 
-        if ($this->role === 'Dean') {
+        if (Auth::user()->role === 'Dean') {
             $this->deanApproval($ReportID);
         }
 
@@ -127,15 +129,15 @@ class ReportController extends Controller
 
     public function reject($ReportID)
     {
-        if ($this->role === 'Coordinator') {
+        if (Auth::user()->role === 'Coordinator') {
             $this->coordinatorReject($ReportID);
         }
 
-        if ($this->role === 'Head of Student Development') {
+        if (Auth::user()->role === 'Head of Student Development') {
             $this->hosdReject($ReportID);
         }
 
-        if ($this->role === 'Dean') {
+        if (Auth::user()->role === 'Dean') {
             $this->deanReject($ReportID);
         }
 

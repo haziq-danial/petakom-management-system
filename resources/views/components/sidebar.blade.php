@@ -1,5 +1,5 @@
 <!-- Main Sidebar Container -->
-<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+<form id="logout-form" action="{{ route('logout') }}" method="GET" style="display: none;">
     {{ csrf_field() }}
 </form>
 
@@ -31,6 +31,12 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('view') }}">
+                        <i class="nav-icon far fa-circle nav-icon"></i>
+                        My Profile
+                    </a>
+                </li>
 
                 @if(Auth::user()->role == 'Coordinator')
                     <li class="nav-item">
@@ -41,6 +47,7 @@
                     </li>
 
                 @elseif(Auth::user()->role == 'Student')
+
                     <li class="nav-item">
                         <a class="nav-link" href="#">
                             <i class="nav-icon far fa-circle nav-icon"></i>
@@ -54,9 +61,15 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="{{ route('manage-report.index') }}">
                             <i class="nav-icon far fa-circle nav-icon"></i>
-                            Report & Activity Proposal
+                            Report Proposal
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('manage-proposal.index') }}">
+                            <i class="nav-icon far fa-circle nav-icon"></i>
+                            Activity Proposal
                         </a>
                     </li>
                     <li class="nav-item">
@@ -80,7 +93,16 @@
                         <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Yearly Calender</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Report & Activity Proposal</a>
+                        <a class="nav-link" href="{{ route('manage-report.index') }}">
+                            <i class="nav-icon far fa-circle nav-icon"></i>
+                            Report Proposal
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('manage-proposal.index') }}">
+                            <i class="nav-icon far fa-circle nav-icon"></i>
+                            Activity Proposal
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Election</a>
@@ -97,7 +119,16 @@
                         <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Yearly Calender</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Report & Activity Proposal</a>
+                        <a class="nav-link" href="{{ route('manage-report.index') }}">
+                            <i class="nav-icon far fa-circle nav-icon"></i>
+                            Report Proposal
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('manage-proposal.index') }}">
+                            <i class="nav-icon far fa-circle nav-icon"></i>
+                            Activity Proposal
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Election</a>
@@ -114,7 +145,16 @@
                         <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Yearly Calender</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Report & Activity Proposal</a>
+                        <a class="nav-link" href="{{ route('manage-report.index') }}">
+                            <i class="nav-icon far fa-circle nav-icon"></i>
+                            Report Proposal
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('manage-proposal.index') }}">
+                            <i class="nav-icon far fa-circle nav-icon"></i>
+                            Activity Proposal
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Election</a>
@@ -131,7 +171,16 @@
                         <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Yearly Calender</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Report & Activity Proposal</a>
+                        <a class="nav-link" href="{{ route('manage-report.index') }}">
+                            <i class="nav-icon far fa-circle nav-icon"></i>
+                            Report Proposal
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('manage-proposal.index') }}">
+                            <i class="nav-icon far fa-circle nav-icon"></i>
+                            Activity Proposal
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Election</a>
