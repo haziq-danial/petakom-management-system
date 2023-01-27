@@ -1,8 +1,13 @@
 <?php
 
+
+use App\Models\Bulletin;
+
 use App\Http\Controllers\ProposalController;
 use App\Http\Controllers\ReportController;
+
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ManageBulletinController;
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
@@ -70,6 +75,49 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
+
+Route::group(['prefix' => 'bulletin', 'as' => 'manage-bulletin.'], function () {
+    // Index page complete
+    Route::get('/index', [ManageBulletinController::class, 'viewBulletinList'])
+        ->name('index');
+    // Add bulletin
+    Route::get('/add', function () {
+        return view('ManageBulletin.Addbulletin');
+    })
+    ->name('add'); 
+    // Add confirmation 
+    Route::get('/addconfirming', function () {
+        return view('ManageBulletin.ConfirmAddBulletin');
+    })
+    ->name('addconfirming');   
+    // Confirm Add bulletin
+    Route::post('/confirmAdd', [ManageBulletinController::class, 'addBulletin'])
+        ->name('confirmAdd');
+    // Search bulletin complete
+    Route::get('/search', [ManageBulletinController::class, 'searchBulletin'])
+        ->name('search');
+    // View bulletin complete
+    Route::get('/view/{bulletin_id}', [ManageBulletinController::class, 'viewBulletinDetails'])
+        ->name('view');
+    // Edit bulletin complete
+    Route::get('/edit/{bulletin_id}', [ManageBulletinController::class, 'editBulletin'])
+        ->name('edit');
+    // Confirm Edit bulletin complete
+    Route::get('/confirmEdit/{bulletin_id}',function ($bulletin_id) {
+        $bulletin = Bulletin::find($bulletin_id);
+        return view('ManageBulletin.ConfirmEditBulletin', [
+            'bulletin' => $bulletin
+        ]);
+    })
+    ->name('confirmEdit');
+    // Delete bulletin complete
+    Route::get('/delete/{bulletin_id}', [ManageBulletinController::class, 'deleteBulletin'])
+        ->name('delete');
+    // Update bulletin complete
+    Route::post('/update/{bulletin_id}', [ManageBulletinController::class, 'updateBulletin'])
+        ->name('update');
+});
+
 Route::group(['prefix' => 'manage-report', 'as' => 'manage-report.'], function (){
     Route::get('/', [ReportController::class, 'index'])->name('index');
 
@@ -128,3 +176,4 @@ Route::resource("/ActivityApproval", ActivityApprovalController::class);
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
