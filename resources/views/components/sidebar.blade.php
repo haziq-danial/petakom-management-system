@@ -24,22 +24,123 @@
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('dashboard') }}" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-clipboard-list"></i>
-                        <p>
-                            Manage Profile
 
-                        </p>
-                    </a>
-                </li>
+                @if(Auth::user()->role == 'Coordinator')
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('register_member') }}">
+                            <i class="nav-icon far fa-circle nav-icon"></i>
+                            Register Member
+                        </a>
+                    </li>
+
+                @elseif(Auth::user()->role == 'Student')
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="nav-icon far fa-circle nav-icon"></i>
+                            Activities
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="nav-icon far fa-circle nav-icon"></i>
+                            Yearly Calender
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="nav-icon far fa-circle nav-icon"></i>
+                            Report & Activity Proposal
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="nav-icon far fa-circle nav-icon"></i>
+                            Election
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="nav-icon far fa-circle nav-icon"></i>
+                            Bulletin
+                        </a>
+                    </li>
+
+                @elseif(Auth::user()->role == 'Lecturer')
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Activities</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Yearly Calender</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Report & Activity Proposal</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Election</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Bulletin</a>
+                    </li>
+
+                @elseif(Auth::user()->role == 'Dean')
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Activities</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Yearly Calender</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Report & Activity Proposal</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Election</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Bulletin</a>
+                    </li>
+
+                @elseif(Auth::user()->role == 'PETAKOM Committee')
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Activities</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Yearly Calender</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Report & Activity Proposal</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Election</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Bulletin</a>
+                    </li>
+
+                @elseif(Auth::user()->role == 'Head of Student Development')
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Activities</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Yearly Calender</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Report & Activity Proposal</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Election</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Bulletin</a>
+                    </li>
+
+                @endif
 
                 <li class="nav-item">
                     <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav-link">
