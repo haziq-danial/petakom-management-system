@@ -49,7 +49,7 @@
                 @elseif(Auth::user()->role == 'Student')
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="{{ route('PtkActivity.index') }}">
                             <i class="nav-icon far fa-circle nav-icon"></i>
                             Activities
                         </a>
@@ -87,7 +87,7 @@
 
                 @elseif(Auth::user()->role == 'Lecturer')
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Activities</a>
+                        <a class="nav-link" href="{{ route('/PtkActivity/index') }}"><i class="nav-icon far fa-circle nav-icon"></i>Activities</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Yearly Calender</a>
@@ -108,7 +108,7 @@
                         <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Election</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Bulletin</a>
+                        <a class="nav-link" href=""><i class="nav-icon far fa-circle nav-icon"></i>Bulletin</a>
                     </li>
 
                 @elseif(Auth::user()->role == 'Dean')

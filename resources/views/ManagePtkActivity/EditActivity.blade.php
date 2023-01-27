@@ -1,5 +1,14 @@
 
 @extends('layouts.app')
+
+@section('title', 'Edit Activities')
+
+@section('stylesheet')
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css ') }}">
+@endsection
 @section('content')
 <div class="card">
   <div class="card-header">Edit Activity Page</div>
@@ -7,7 +16,7 @@
 	<a class="btn btn-primary" href="{{ url('PtkActivity') }}"> Back</a>
 </div>
   <div class="card-body">
-      
+
     <form action="{{ url('PtkActivity/' .$activities->id) }}" method="post" enctype="multipart/form-data">
         {!! csrf_field() !!}
         @method("PATCH")
@@ -55,7 +64,18 @@
 
         <input type="submit" value="Save" class="btn btn-success"></br>
     </form>
-  
+
   </div>
 </div>
 @endsection('content')
+
+@section('scripts')
+    <!-- jQuery -->
+    <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+
+    <!-- Bootstrap 4 -->
+    <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+    <!-- AdminLTE App -->
+    <script src="{{ asset('dist/js/adminlte.js') }}"></script>
+@endsection

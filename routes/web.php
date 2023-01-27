@@ -151,7 +151,7 @@ Route::group(['prefix' => 'manage-proposal', 'as' => 'manage-proposal.'], functi
 });
 
 
-Route::get('/', 'App\http\Controllers\PtkActivityController@index')->name('user');
+//Route::get('/', 'App\http\Controllers\PtkActivityController@index')->name('user');
 Route::resource("/PtkActivity", PtkActivityController::class);
 Route::resource("/ActivityApproval", ActivityApprovalController::class);
 
