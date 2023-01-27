@@ -13,17 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('coordinator_profile', function (Blueprint $table) {
             $table->id();
-            $table->string('umpid');
-            $table->string('email');
-            $table->string('name');
-            $table->string('address');
-            $table->string('phone');
-            $table->string('role');
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->String('CDN_ID')->unique();
+            $table->String('CDN_Name');
+            $table->String('CDN_Email');
+            $table->String('CDN_Phone');
+            $table->String('CDN_Gender');
+            $table->String('CDN_Address');
+            $table->String('CDN_Pass');
             $table->timestamps();
         });
     }
@@ -35,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('coordinator_profile');
     }
 };
