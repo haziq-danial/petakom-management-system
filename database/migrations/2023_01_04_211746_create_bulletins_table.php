@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('bulletins', function (Blueprint $table) {
             $table->id('bulletin_id');
+            $table->string('posted_by');
             $table->string('category');
             $table->string('title');
             $table->string('message');

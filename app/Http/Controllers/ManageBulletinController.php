@@ -5,18 +5,19 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\Bulletin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ManageBulletinController extends Controller
 {
-    
+
     public function viewBulletinList(){
         $bulletins = Bulletin::where('expired_at', '>', Carbon::now()->subDays(1))
             ->get();
         $count = 1;
 
         $status = 1;// Authentication status
-        
-        if ($status==1){
+
+        if ($status === 2){
             $petakoms = Bulletin::where('category', 'PETAKOM')
             ->get();
             $facultys = Bulletin::where('category', 'Faculty')
@@ -32,7 +33,7 @@ class ManageBulletinController extends Controller
                 'count' => $count
             ]);
         }
-        
+
     }
 
     public function viewBulletinDetails($bulletin_id){
@@ -96,7 +97,7 @@ class ManageBulletinController extends Controller
         $newDateTime = Carbon::parse($bulletin->created_at)->addDays($request->input('days'));
         $bulletin->expired_at = $newDateTime;
         $bulletin->save();
-        
+
         return redirect()->route('manage-bulletin.index')->with('message', 'Bulletin successfully edited');
     }
 
@@ -105,5 +106,5 @@ class ManageBulletinController extends Controller
         $bulletin->delete();
         return redirect()->route('manage-bulletin.index');
     }
-    
+
 }

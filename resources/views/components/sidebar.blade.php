@@ -79,7 +79,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="{{ route('manage-bulletin.index') }}">
                             <i class="nav-icon far fa-circle nav-icon"></i>
                             Bulletin
                         </a>
@@ -108,12 +108,12 @@
                         <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Election</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href=""><i class="nav-icon far fa-circle nav-icon"></i>Bulletin</a>
+                        <a class="nav-link" href="{{ route('manage-bulletin.index') }}"><i class="nav-icon far fa-circle nav-icon"></i>Bulletin</a>
                     </li>
 
                 @elseif(Auth::user()->role == 'Dean')
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Activities</a>
+                        <a class="nav-link" href="{{ route('PtkActivity.index') }}"><i class="nav-icon far fa-circle nav-icon"></i>Activities</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Yearly Calender</a>
@@ -134,12 +134,12 @@
                         <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Election</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Bulletin</a>
+                        <a class="nav-link" href="{{ route('manage-bulletin.index') }}"><i class="nav-icon far fa-circle nav-icon"></i>Bulletin</a>
                     </li>
 
                 @elseif(Auth::user()->role == 'PETAKOM Committee')
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Activities</a>
+                        <a class="nav-link" href="{{ route('PtkActivity.index') }}"><i class="nav-icon far fa-circle nav-icon"></i>Activities</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Yearly Calender</a>
@@ -160,12 +160,12 @@
                         <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Election</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Bulletin</a>
+                        <a class="nav-link" href="{{ route('manage-bulletin.index') }}"><i class="nav-icon far fa-circle nav-icon"></i>Bulletin</a>
                     </li>
 
                 @elseif(Auth::user()->role == 'Head of Student Development')
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Activities</a>
+                        <a class="nav-link" href="{{ route('PtkActivity.index') }}"><i class="nav-icon far fa-circle nav-icon"></i>Activities</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Yearly Calender</a>
@@ -186,7 +186,7 @@
                         <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Election</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Bulletin</a>
+                        <a class="nav-link" href="{{ route('manage-bulletin.index') }}"><i class="nav-icon far fa-circle nav-icon"></i>Bulletin</a>
                     </li>
 
                 @endif

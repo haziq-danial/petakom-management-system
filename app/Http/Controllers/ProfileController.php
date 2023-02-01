@@ -99,7 +99,7 @@ class ProfileController extends Controller
         User::create([
             'umpid' => $data['umpid'],
             'role' => $data['role'],
-            'password' => Hash::make('1234abcd'),
+            'password' => Hash::make('password'),
             'email' => '',
             'name' => '',
             'phone' => '',

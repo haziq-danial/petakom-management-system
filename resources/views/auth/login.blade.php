@@ -59,6 +59,7 @@
 
             <p class="mb-0">
                 <a href="{{ route('indexForgotPassword') }}" class="text-center">Forgot password</a>
+                <a href="{{ route('register') }}" class="text-center">Register</a>
             </p>
         </div>
         <!-- /.login-card-body -->

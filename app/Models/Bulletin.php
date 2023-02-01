@@ -18,6 +18,7 @@ class Bulletin extends Model
         'bulletin_url_reference',
         'bulletin_duration',
         'bulletin_expired_at',
+        'posted_by'
     ];
-    
+
 }
