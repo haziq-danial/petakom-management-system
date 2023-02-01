@@ -57,6 +57,12 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">
                             <i class="nav-icon far fa-circle nav-icon"></i>
+                            Elections
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="nav-icon far fa-circle nav-icon"></i>
                             Yearly Calender
                         </a>
                     </li>
@@ -88,6 +94,12 @@
                 @elseif(Auth::user()->role == 'Lecturer')
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('/PtkActivity/index') }}"><i class="nav-icon far fa-circle nav-icon"></i>Activities</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('manage-election.index') }}">
+                            <i class="nav-icon far fa-circle nav-icon"></i>
+                            Elections
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Yearly Calender</a>
@@ -142,6 +154,12 @@
                         <a class="nav-link" href="{{ route('PtkActivity.index') }}"><i class="nav-icon far fa-circle nav-icon"></i>Activities</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('manage-election.index') }}">
+                            <i class="nav-icon far fa-circle nav-icon"></i>
+                            Elections
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Yearly Calender</a>
                     </li>
                     <li class="nav-item">
@@ -166,6 +184,12 @@
                 @elseif(Auth::user()->role == 'Head of Student Development')
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('PtkActivity.index') }}"><i class="nav-icon far fa-circle nav-icon"></i>Activities</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('manage-election.index') }}">
+                            <i class="nav-icon far fa-circle nav-icon"></i>
+                            Elections
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Yearly Calender</a>

@@ -16,7 +16,9 @@ use App\Http\Controllers\PtkActivityController;
 use App\Http\Controllers\ActivityApprovalController;
 use App\Models\PtkActivityModel;
 
-
+use App\Http\Controllers\CandidateController;
+use App\Http\Controllers\ElectionController;
+use App\Http\Controllers\ElectedStudentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -148,6 +150,10 @@ Route::group(['prefix' => 'manage-proposal', 'as' => 'manage-proposal.'], functi
     Route::get('/approve/{ProposalID}', [ProposalController::class, 'approve'])->name('approve');
 
     Route::get('/reject/{ReportID}', [ProposalController::class, 'reject'])->name('reject');
+});
+
+Route::group(['prefix' => 'manage-election', 'as' => 'manage-election.'], function () {
+    Route::get('/', [CandidateController::class, 'index'])->name('index');
 });
 
 
