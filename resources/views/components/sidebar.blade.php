@@ -45,6 +45,22 @@
                             Register Member
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="nav-icon far fa-circle nav-icon"></i>
+                            Elections
+                            <i class="right fas fa-angle-left"></i>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('manage-election.list-elected') }}" class="nav-link">
+                                    <i class="nav-icon far fa-circle nav-icon"></i>
+                                    Approve Elected Candidate
+                                </a>
+                            </li>
+                        </ul>
+
+                    </li>
 
                 @elseif(Auth::user()->role == 'Student')
 
@@ -58,7 +74,24 @@
                         <a class="nav-link" href="#">
                             <i class="nav-icon far fa-circle nav-icon"></i>
                             Elections
+                            <i class="right fas fa-angle-left"></i>
                         </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('manage-election.candidates') }}" class="nav-link">
+                                    <i class="nav-icon far fa-circle nav-icon"></i>
+                                    View candidates
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('manage-election.elections') }}" class="nav-link">
+                                    <i class="nav-icon far fa-circle nav-icon"></i>
+                                    Vote Election
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">
@@ -154,10 +187,26 @@
                         <a class="nav-link" href="{{ route('PtkActivity.index') }}"><i class="nav-icon far fa-circle nav-icon"></i>Activities</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('manage-election.index') }}">
+                        <a class="nav-link" href="#">
                             <i class="nav-icon far fa-circle nav-icon"></i>
                             Elections
+                            <i class="right fas fa-angle-left"></i>
                         </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('manage-election.list-candidates') }}" class="nav-link">
+                                    <i class="nav-icon far fa-circle nav-icon"></i>
+                                    Approve Registered Candidates
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('manage-election.list-votes') }}" class="nav-link">
+                                    <i class="nav-icon far fa-circle nav-icon"></i>
+                                    View Current Election
+                                </a>
+                            </li>
+                        </ul>
+
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Yearly Calender</a>
@@ -186,10 +235,20 @@
                         <a class="nav-link" href="{{ route('PtkActivity.index') }}"><i class="nav-icon far fa-circle nav-icon"></i>Activities</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('manage-election.index') }}">
+                        <a class="nav-link" href="#">
                             <i class="nav-icon far fa-circle nav-icon"></i>
                             Elections
+                            <i class="right fas fa-angle-left"></i>
                         </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('manage-election.list-elected') }}" class="nav-link">
+                                    <i class="nav-icon far fa-circle nav-icon"></i>
+                                    Approve Elected Candidate
+                                </a>
+                            </li>
+                        </ul>
+
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"><i class="nav-icon far fa-circle nav-icon"></i>Yearly Calender</a>

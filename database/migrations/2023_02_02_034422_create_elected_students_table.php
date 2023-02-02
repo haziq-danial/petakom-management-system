@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('elected_students', function (Blueprint $table) {
             $table->id('elected_id');
             $table->unsignedBigInteger('candidate_id');
-            $table->unsignedBigInteger('election_id');
             $table->integer('hosd_approval');
             $table->integer('coo_approval');
             $table->timestamps();

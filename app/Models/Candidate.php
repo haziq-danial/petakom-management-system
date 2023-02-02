@@ -15,4 +15,14 @@ class Candidate extends Model
         'id',
         'petakom_approval'
     ];
+
+    public function candidate_detail()
+    {
+        return $this->belongsTo(User::class, 'id');
+    }
+
+    public function votes()
+    {
+        return $this->hasMany(Election::class, 'candidate_id');
+    }
 }

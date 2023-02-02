@@ -13,8 +13,12 @@ class ElectedStudent extends Model
 
     protected $fillable = [
         'candidate_id',
-        'election_id',
         'hosd_approval',
         'coo_approval'
     ];
+
+    public function candidate()
+    {
+        return $this->belongsTo(Candidate::class, 'candidate_id');
+    }
 }

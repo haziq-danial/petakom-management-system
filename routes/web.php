@@ -153,7 +153,22 @@ Route::group(['prefix' => 'manage-proposal', 'as' => 'manage-proposal.'], functi
 });
 
 Route::group(['prefix' => 'manage-election', 'as' => 'manage-election.'], function () {
-    Route::get('/', [CandidateController::class, 'index'])->name('index');
+    Route::get('/candidates', [CandidateController::class, 'candidates'])->name('candidates');
+    Route::get('/register-candidate', [CandidateController::class, 'registerCandidate'])->name('register-candidate');
+
+    Route::get('/list-candidates', [CandidateController::class, 'listCandidates'])->name('list-candidates');
+    Route::get('/approve-candidate/{candidate_id}', [CandidateController::class, 'approveCandidate'])->name('approve-candidate');
+    Route::get('/reject-candidate/{candidate_id}', [CandidateController::class, 'rejectCandidate'])->name('reject-candidate');
+
+    Route::get('/elections', [ElectionController::class, 'elections'])->name('elections');
+    Route::get('/vote/{candidate_id}', [ElectionController::class, 'vote'])->name('vote');
+
+    Route::get('/election/list-votes', [ElectionController::class, 'listVotes'])->name('list-votes');
+    Route::get('/election/declare-winner/{candidate_id}', [ElectionController::class, 'declareWinner'])->name('declare-winner');
+
+    Route::get('/list-elected', [ElectedStudentController::class, 'listElected'])->name('list-elected');
+    Route::get('/approve-elected/{candidate_id}', [ElectedStudentController::class, 'approve'])->name('approve-elected');
+    Route::get('/reject-elected/{candidate_id}', [ElectedStudentController::class, 'reject'])->name('reject-elected');
 });
 
 
