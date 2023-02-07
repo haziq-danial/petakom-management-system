@@ -9,20 +9,11 @@ use Illuminate\Support\Facades\Auth;
 
 class ProposalController extends Controller
 {
-
-    public $role = '';
-    public $OwnerID = 0;
-
+    /*
+     * Responsible for redirect user to index paga
+     * */
     public function index()
     {
-//        return view('GenerateProposal.index', ['proposals' => $proposalModel]);
-
-//        $this->role = Auth::user()->role;
-//        $user = User::find(Auth::id());
-
-//        $role = $user->role;
-//        $proposalModel = Report::where('OwnerID', Auth::id())->get();
-//        dd(Auth::user());
 
         $count = 0;
 
@@ -57,6 +48,10 @@ class ProposalController extends Controller
         }
     }
 
+    /*
+     * Responsible for view the proposal
+     * require proposal id
+     * */
     public function view($ProposalID)
     {
         $proposalModel = Proposal::where('ProposalID', $ProposalID)->first();
@@ -64,11 +59,17 @@ class ProposalController extends Controller
         return view('GenerateProposal.view', ['proposal' => $proposalModel]);
     }
 
+    /*
+     * Redirect user to create proposal page
+     * */
     public function create()
     {
         return view('GenerateProposal.create');
     }
 
+    /*
+     * responsible for store proposal
+     * */
     public function store(Request $request)
     {
         $proposalModel = new Proposal;
@@ -86,6 +87,10 @@ class ProposalController extends Controller
         return redirect()->route('manage-proposal.index');
     }
 
+    /*
+     * responsible for edit proposal
+     * require proposal id
+     * */
     public function edit($ProposalID)
     {
         $proposalModel = Proposal::where('ProposalID', $ProposalID)->first();
@@ -93,6 +98,10 @@ class ProposalController extends Controller
         return view('GenerateProposal.edit', ['proposal' => $proposalModel]);
     }
 
+    /*
+     * responsible for update proposal
+     * require proposal id, and request object
+     * */
     public function update(Request $request, $ProposalID)
     {
         $proposalModel = Proposal::find($ProposalID);
@@ -110,40 +119,51 @@ class ProposalController extends Controller
         return redirect()->route('manage-proposal.index');
     }
 
-    public function approve($ReportID)
+
+    /*
+     * responsible for approve proposal
+     * */
+    public function approve($ProposalID)
     {
         if (Auth::user()->role === 'Coordinator') {
-            $this->coordinatorApproval($ReportID);
+            $this->coordinatorApproval($ProposalID);
         }
 
         if (Auth::user()->role === 'Head of Student Development') {
-            $this->hosdApproval($ReportID);
+            $this->hosdApproval($ProposalID);
         }
 
         if (Auth::user()->role === 'Dean') {
-            $this->deanApproval($ReportID);
+            $this->deanApproval($ProposalID);
         }
 
         return redirect()->route('manage-proposal.index');
     }
 
-    public function reject($ReportID)
+
+    /*
+     * responsible for reject proposal
+     * */
+    public function reject($ProposalID)
     {
         if (Auth::user()->role === 'Coordinator') {
-            $this->coordinatorReject($ReportID);
+            $this->coordinatorReject($ProposalID);
         }
 
         if (Auth::user()->role === 'Head of Student Development') {
-            $this->hosdReject($ReportID);
+            $this->hosdReject($ProposalID);
         }
 
         if (Auth::user()->role === 'Dean') {
-            $this->deanReject($ReportID);
+            $this->deanReject($ProposalID);
         }
 
         return redirect()->route('manage-proposal.index');
     }
 
+    /*
+     * Head of Student Development approve proposal
+     * */
     public function hosdApproval($ProposalID)
     {
         $proposalModel = Proposal::where('ProposalID', $ProposalID)->first();
@@ -154,6 +174,10 @@ class ProposalController extends Controller
 
     }
 
+
+    /*
+     * coordinator approval proposal
+     * */
     public function coordinatorApproval($ProposalID)
     {
         $proposalModel = Proposal::where('ProposalID', $ProposalID)->first();
@@ -164,6 +188,10 @@ class ProposalController extends Controller
 
     }
 
+
+    /*
+     * dean approval proposal
+     * */
     public function deanApproval($ProposalID)
     {
         $proposalModel = Proposal::where('ProposalID', $ProposalID)->first();
@@ -174,6 +202,10 @@ class ProposalController extends Controller
 
     }
 
+
+    /*
+     * Head of Student Development reject proposal
+     * */
     public function hosdReject($ProposalID)
     {
         $proposalModel = Proposal::where('ProposalID', $ProposalID)->first();
@@ -184,6 +216,10 @@ class ProposalController extends Controller
 
     }
 
+
+    /*
+     * coordinator reject proposal
+     * */
     public function coordinatorReject($ProposalID)
     {
         $proposalModel = Proposal::where('ProposalID', $ProposalID)->first();
@@ -194,6 +230,9 @@ class ProposalController extends Controller
 
     }
 
+    /*
+     * dean reject proposal
+     * */
     public function deanReject($ProposalID)
     {
         $proposalModel = Proposal::where('ProposalID', $ProposalID)->first();

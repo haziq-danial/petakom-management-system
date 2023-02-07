@@ -11,23 +11,15 @@ use Illuminate\Support\Facades\Auth;
 class ReportController extends Controller
 {
 
-    public $role = '';
-    public $OwnerID = 0;
-
-
+    /*
+     * Responsible for redirect user to index paga
+     * */
     public function index()
     {
-//        dd(Auth::user()->role);
         $count = 0;
-//        $user = User::find(Auth::id());
-
-//        $role = $user->role;
-//        $proposalModel = Report::where('OwnerID', Auth::id())->get();
-
 
         if (Auth::user()->role === 'Student' || Auth::user()->role === 'Lecturer' || Auth::user()->role === 'PETAKOM Committee') {
             $reports = Report::where('OwnerID', Auth::id())->get();
-//            dd($reportModel);
             return view('GenerateReport.index', compact('reports', 'count'));
         }
 
@@ -56,6 +48,10 @@ class ReportController extends Controller
         }
     }
 
+    /*
+     * Responsible for view the report
+     * require report id
+     * */
     public function view($ReportID)
     {
         $report = Report::where('ReportID', $ReportID)->first();
@@ -63,11 +59,17 @@ class ReportController extends Controller
         return view('GenerateReport.view', ['report' => $report]);
     }
 
+    /*
+    * Redirect user to create report page
+    * */
     public function create()
     {
         return view('GenerateReport.create');
     }
 
+    /*
+     * responsible for store report
+     * */
     public function store(Request $request)
     {
 //        dd($request);
@@ -86,6 +88,11 @@ class ReportController extends Controller
         return redirect()->route('manage-report.index');
     }
 
+
+    /*
+     * responsible for edit report
+     * require report id
+     * */
     public function edit($ReportID)
     {
         $report = Report::where('ReportID', $ReportID)->first();
@@ -93,6 +100,11 @@ class ReportController extends Controller
         return view('GenerateReport.edit', ['report' => $report]);
     }
 
+
+    /*
+     * responsible for update report
+     * require report id, and request object
+     * */
     public function update(Request $request, $ReportID)
     {
         $reportModel = Report::find($ReportID);
@@ -110,6 +122,10 @@ class ReportController extends Controller
         return redirect()->route('manage-report.index');
     }
 
+
+    /*
+     * responsible for approve report
+     * */
     public function approve($ReportID)
     {
         if (Auth::user()->role === 'Coordinator') {
@@ -127,6 +143,10 @@ class ReportController extends Controller
         return redirect()->route('manage-report.index');
     }
 
+
+    /*
+     * responsible for reject report
+     * */
     public function reject($ReportID)
     {
         if (Auth::user()->role === 'Coordinator') {
@@ -144,6 +164,10 @@ class ReportController extends Controller
         return redirect()->route('manage-report.index');
     }
 
+
+    /*
+     * Head of Student Development approve report
+     * */
     public function hosdApproval($ReportID)
     {
         $reportModel = Report::where('ReportID', $ReportID)->first();
@@ -153,6 +177,10 @@ class ReportController extends Controller
 
     }
 
+
+    /*
+     * coordinator approval report
+     * */
     public function coordinatorApproval($ReportID)
     {
         $reportModel = Report::where('ReportID', $ReportID)->first();
@@ -162,6 +190,10 @@ class ReportController extends Controller
 
     }
 
+
+    /*
+     * dean approval report
+     * */
     public function deanApproval($ReportID)
     {
         $reportModel = Report::where('ReportID', $ReportID)->first();
@@ -171,6 +203,9 @@ class ReportController extends Controller
 
     }
 
+    /*
+     * Head of Student Development reject report
+     * */
     public function hosdReject($ReportID)
     {
         $reportModel = Report::where('ReportID', $ReportID)->first();
@@ -180,6 +215,9 @@ class ReportController extends Controller
 
     }
 
+    /*
+     * coordinator reject report
+     * */
     public function coordinatorReject($ReportID)
     {
         $reportModel = Report::where('ReportID', $ReportID)->first();
@@ -189,6 +227,10 @@ class ReportController extends Controller
 
     }
 
+
+    /*
+     * dean reject report
+     * */
     public function deanReject($ReportID)
     {
         $reportModel = Report::where('ReportID', $ReportID)->first();
