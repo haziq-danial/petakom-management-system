@@ -77,6 +77,10 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
+Route::group(['prefix' => 'manage-user', 'as' => 'manage-user.'], function () {
+
+});
+
 
 Route::group(['prefix' => 'bulletin', 'as' => 'manage-bulletin.'], function () {
     // Index page complete
