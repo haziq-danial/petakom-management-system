@@ -2,21 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Classes\Constants\ApprovalLevel;
-use App\Models\Candidate;
-use App\Models\ElectedStudent;
+use Carbon\Carbon;
+use App\Models\VoteDay;
 use App\Models\Election;
+use App\Models\Candidate;
 use Illuminate\Http\Request;
+use App\Models\ElectedStudent;
 use Illuminate\Support\Facades\Auth;
+use App\Classes\Constants\ApprovalLevel;
 
 class ElectionController extends Controller
 {
+
     public function elections()
     {
+        $id = 1;
+        $date = VoteDay::find($id);
+        $dt = Carbon::now()->format('d-m-y');
+
         $candidates = Candidate::where('petakom_approval', ApprovalLevel::APPROVED)->get();
         $count = 0;
 
-        return view('ManageElection.vote-election', compact('candidates', 'count'));
+        return view('ManageElection.vote-election', compact('candidates', 'count'))->with('dt',$dt)->with('date', $date);
+        
     }
 
     public function vote($candidate_id)

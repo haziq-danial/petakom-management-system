@@ -3,22 +3,23 @@
 
 use App\Models\Bulletin;
 
-use App\Http\Controllers\ProposalController;
-use App\Http\Controllers\ReportController;
-
+use App\Models\PtkActivityModel;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ManageBulletinController;
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ReportController;
+
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\VoteDayController;
+
+use App\Http\Controllers\ElectionController;
+use App\Http\Controllers\ProposalController;
+use App\Http\Controllers\CandidateController;
 
 use App\Http\Controllers\PtkActivityController;
-use App\Http\Controllers\ActivityApprovalController;
-use App\Models\PtkActivityModel;
-
-use App\Http\Controllers\CandidateController;
-use App\Http\Controllers\ElectionController;
 use App\Http\Controllers\ElectedStudentController;
+use App\Http\Controllers\ManageBulletinController;
+use App\Http\Controllers\ActivityApprovalController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -164,6 +165,7 @@ Route::group(['prefix' => 'manage-election', 'as' => 'manage-election.'], functi
     Route::get('/approve-candidate/{candidate_id}', [CandidateController::class, 'approveCandidate'])->name('approve-candidate');
     Route::get('/reject-candidate/{candidate_id}', [CandidateController::class, 'rejectCandidate'])->name('reject-candidate');
 
+    
     Route::get('/elections', [ElectionController::class, 'elections'])->name('elections');
     Route::get('/vote/{candidate_id}', [ElectionController::class, 'vote'])->name('vote');
 
@@ -173,6 +175,9 @@ Route::group(['prefix' => 'manage-election', 'as' => 'manage-election.'], functi
     Route::get('/list-elected', [ElectedStudentController::class, 'listElected'])->name('list-elected');
     Route::get('/approve-elected/{candidate_id}', [ElectedStudentController::class, 'approve'])->name('approve-elected');
     Route::get('/reject-elected/{candidate_id}', [ElectedStudentController::class, 'reject'])->name('reject-elected');
+
+    Route::get('/day-vote', [VoteDayController::class, 'dayVote'])->name('day-vote');
+    Route::post('/update/{id}', [VoteDayController::class, 'update'])->name('update');
 });
 
 

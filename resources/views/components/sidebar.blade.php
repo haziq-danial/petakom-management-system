@@ -58,6 +58,13 @@
                                     Approve Elected Candidate
                                 </a>
                             </li>
+                            
+                            <li class="nav-item">
+                                <a href="{{ route('manage-election.day-vote') }}" class="nav-link">
+                                    <i class="nav-icon far fa-circle nav-icon"></i>
+                                    Set Election Date
+                                </a>
+                            </li>
                         </ul>
 
                     </li>

@@ -20,46 +20,63 @@
         </div><!-- /.container-fluid -->
     </section>
 
-    <section class="content">
-        <div class="card card-primary">
-            <div class="card-header">
-                <h3 class="card-title">Candidates</h3>
-            </div>
-            <div class="card-body">
-                <table class="table table-striped projects">
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Candidate Name</th>
-                        <th style="width: 2%" class="text-center">Action</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($candidates as $candidate)
+    @php
+        $vt = $date->VOTE_DATE->format('d-m-y')
+    @endphp
+
+    @if ($dt < $vt)
+       <section class="content">
+            <p>The voting day will be held on {{ $date->VOTE_DATE->format('d-m-y') }} at 
+                {{ $date->VOTE_STARTTIME->format('H:i') }} 
+                untill {{ $date->VOTE_ENDTIME->format('H:i') }}
+            </p>
+        </section> 
+    @elseif($dt > $vt)
+        <section class="content">
+            <p>The voting day has ended.</p>
+        </section>
+    @else
+        <section class="content">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Candidates</h3>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped projects">
+                        <thead>
                         <tr>
-                            <td>{{ ++$count }}</td>
-                            <td>{{ $candidate->candidate_detail->name }}</td>
-
-                            <td class="text-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-primary">Action</button>
-                                    <button type="button" class="btn btn-primary dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                                        <span class="sr-only">Toggle Dropdown</span>
-                                    </button>
-                                    <div class="dropdown-menu" role="menu">
-                                        <a class="dropdown-item" href="{{ route('manage-election.vote', $candidate->candidate_id) }}">Vote candidate</a>
-                                    </div>
-                                </div>
-                            </td>
-
+                            <th>#</th>
+                            <th>Candidate Name</th>
+                            <th style="width: 2%" class="text-center">Action</th>
                         </tr>
-                    @endforeach
-                    </tbody>
-                </table>
-            </div>
+                        </thead>
+                        <tbody>
+                        @foreach($candidates as $candidate)
+                            <tr>
+                                <td>{{ ++$count }}</td>
+                                <td>{{ $candidate->candidate_detail->name }}</td>
 
-        </div>
-    </section>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-primary">Action</button>
+                                        <button type="button" class="btn btn-primary dropdown-toggle dropdown-icon" data-toggle="dropdown">
+                                            <span class="sr-only">Toggle Dropdown</span>
+                                        </button>
+                                        <div class="dropdown-menu" role="menu">
+                                            <a class="dropdown-item" href="{{ route('manage-election.vote', $candidate->candidate_id) }}">Vote candidate</a>
+                                        </div>
+                                    </div>
+                                </td>
+
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </section>
+    @endif
 @endsection
 
 @section('scripts')
