@@ -21,4 +21,11 @@ class PtkActivityModel extends Model
     protected $fillable = ['ACTIVITY_ID', 'PTK_ID', 'STD_ID', 'LEC_ID', 'D_ID', 'CDN_ID', 'HSD_ID', 'CLUB_NAME', 'ADVISOR_CLUB_NAME', 'ORGANIZER'
     , 'ACTIVITY_NAME', 'APPLICATION_TYPE', 'ACTIVITY_TYPE', 'PARTICIPANT_NUM', 'VENUE', 'ACTIVITY_STARTDATE', 'ACTIVITY_ENDDATE', 'ACTIVITY_STARTTIME'
     , 'ACTIVITY_ENDTIME', 'BUDGET'];
+
+    protected $casts = [
+        'ACTIVITY_STARTDATE' => 'datetime:Y/m/d',
+        'ACTIVITY_ENDDATE' => 'datetime:Y/m/d',
+        'ACTIVITY_STARTTIME' => 'datetime:H:i:s',
+        'ACTIVITY_ENDTIME' => 'datetime:H:i:s',
+    ];
 }

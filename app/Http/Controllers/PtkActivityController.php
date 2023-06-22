@@ -40,6 +40,7 @@ class PtkActivityController extends Controller
     public function edit($id)
     {
         $activity = PtkActivityModel::find($id);
+        // dd($activity->toArray());
         
         return view('ManagePtkActivity.EditActivity')->with('activities', $activity);
     }
@@ -48,8 +49,7 @@ class PtkActivityController extends Controller
     public function update(Request $request, $id)
     {
         $activity = PtkActivityModel::find($id);
-        $input = $request->all();
-        $activity->update($input);
+        $activity->update($request->all());
     
         return redirect('PtkActivity')->with('flash_message', 'activity Updated!');  
     }

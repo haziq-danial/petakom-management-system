@@ -48,16 +48,16 @@
         <input type="text" name="VENUE" id="VENUE" value="{{$activities->VENUE}}" class="form-control"></br>
 
 		<label>Activity Start Date</label></br>
-        <input type="date" name="ACTIVITY_STARTDATE" id="ACTIVITY_STARTDATE" value="{{$activities->ACTIVITY_STARTDATE}}" class="form-control"></br>
+        <input type="date" name="ACTIVITY_STARTDATE" id="ACTIVITY_STARTDATE" value="{{$activities->ACTIVITY_STARTDATE->format('Y-m-d')}}" class="form-control"></br>
 
 		<label>Activity End Date</label></br>
-        <input type="date" name="ACTIVITY_ENDDATE" id="ACTIVITY_ENDDATE" value="{{$activities->ACTIVITY_ENDDATE}}" class="form-control"></br>
+        <input type="date" name="ACTIVITY_ENDDATE" id="ACTIVITY_ENDDATE" value="{{$activities->ACTIVITY_ENDDATE->format('Y-m-d')}}" class="form-control"></br>
 
 		<label>Activity Start Time</label></br>
-        <input type="time" name="ACTIVITY_STARTTIME" id="ACTIVITY_STARTTIME" value="{{$activities->ACTIVITY_STARTTIME}}" class="form-control"></br>
+        <input type="time" name="ACTIVITY_STARTTIME" id="ACTIVITY_STARTTIME" value="{{$activities->ACTIVITY_STARTTIME->format('H:i:s')}}" class="form-control"></br>
 
 		<label>Activity End Time</label></br>
-        <input type="time" name="ACTIVITY_ENDTIME" id="ACTIVITY_ENDTIME" value="{{$activities->ACTIVITY_ENDTIME}}" class="form-control"></br>
+        <input type="time" name="ACTIVITY_ENDTIME" id="ACTIVITY_ENDTIME" value="{{$activities->ACTIVITY_ENDTIME->format('H:i:s')}}" class="form-control"></br>
 
 		<label>Budget</label></br>
         <input type="number" name="BUDGET" id="BUDGET" value="{{$activities->BUDGET}}" class="form-control"></br>

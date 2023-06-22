@@ -11,6 +11,7 @@
 
 @section('content')
     <section class="content">
+
         <div class="container">
             <div class="row">
 
@@ -20,44 +21,99 @@
                             <h2>PETAKOM Activities Dashboard</h2>
                         </div>
                         <div class="card-body">
-                            <a href="{{ url('/PtkActivity/create') }}" class="btn btn-success btn-sm" title="Add New Student">
+                            <a href="{{ url('/PtkActivity/create') }}" class="btn btn-success btn-sm"
+                                title="Add New Student">
                                 <i class="fa fa-plus" aria-hidden="true"></i> Add New Activity
                             </a>
-                            <a href="{{ url('/PtkActivity/approval') }}" title="Approval Activity"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Approval Status</button>
+                            <a href="{{ url('/PtkActivity/approval') }}" title="Approval Activity"><button
+                                    class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                    Approval Status</button>
                             </a>
-                            <br/>
-                            <br/>
+                            <br />
+                            <br />
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
-                                    <tr>
-                                        <th>Activity ID</th>
-                                        <th>Club Name</th>
-                                        <th>Advisor Club Name</th>
-                                        <th>Activity Name</th>
-                                        <th>Action</th>
-                                    </tr>
+                                        <tr>
+                                            <th>Activity ID</th>
+                                            <th>Club Name</th>
+                                            <th>Advisor Club Name</th>
+                                            <th>Activity Name</th>
+                                            <th>Action</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($activities as $activity)
-                                        <tr>
-                                            <td>{{ $activity->ACTIVITY_ID }}</td>
-                                            <td>{{ $activity->CLUB_NAME }}</td>
-                                            <td>{{ $activity->ADVISOR_CLUB_NAME }}</td>
-                                            <td>{{ $activity->ACTIVITY_NAME }}</td>
+                                        @foreach ($activities as $activity)
+                                            <tr>
+                                                <td>{{ $activity->ACTIVITY_ID }}</td>
+                                                <td>{{ $activity->CLUB_NAME }}</td>
+                                                <td>{{ $activity->ADVISOR_CLUB_NAME }}</td>
+                                                <td>{{ $activity->ACTIVITY_NAME }}</td>
 
-                                            <td>
-                                                <a href="{{ url('/PtkActivity/' . $activity->id) }}" title="View Activity"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
-                                                <a href="{{ url('/PtkActivity/' . $activity->id . '/edit') }}" title="Edit Activity"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+                                                <td>
+                                                    <a href="{{ url('/PtkActivity/' . $activity->id) }}"
+                                                        title="View Activity"><button class="btn btn-info btn-sm"><i
+                                                                class="fa fa-eye" aria-hidden="true"></i> View</button></a>
+                                                    <a href="{{ url('/PtkActivity/' . $activity->id . '/edit') }}"
+                                                        title="Edit Activity"><button class="btn btn-primary btn-sm"><i
+                                                                class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                                            Edit</button></a>
 
-                                                <form method="POST" action="{{ url('/PtkActivity' . '/' . $activity->id) }}" accept-charset="UTF-8" style="display:inline">
-                                                    {{ method_field('DELETE') }}
-                                                    {{ csrf_field() }}
-                                                    <button type="submit" class="btn btn-danger btn-sm" title="Delete Activity" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    @endforeach
+                                                    {{-- <form method="POST"
+                                                        action="{{ url('/PtkActivity' . '/' . $activity->id) }}"
+                                                        accept-charset="UTF-8" style="display:inline">
+                                                        {{ method_field('DELETE') }}
+                                                        {{ csrf_field() }}
+                                                        <button type="submit" class="btn btn-danger btn-sm"
+                                                            title="Delete Activity"
+                                                            onclick="return confirm(&quot;Confirm delete?&quot;)"><i
+                                                                class="fa fa-trash-o" aria-hidden="true"></i>
+                                                            Delete</button>
+                                                    </form> --}}
+
+                                                    <!-- Button trigger modal -->
+                                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                                        data-target="#exampleModal">
+                                                        Delete
+                                                    </button>
+
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-trash" style="font-size:24px;color:red;"></i> Delete Activity</h5>
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <b>This action cannot be reversible</b></br>
+                                                                    Are you sure want to delete this activity? 
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary btn-sm"
+                                                                        data-dismiss="modal">Cancel</button>
+                                                                        <form method="POST"
+                                                                        action="{{ url('/PtkActivity' . '/' . $activity->id) }}"
+                                                                        accept-charset="UTF-8" style="display:inline">
+                                                                        {{ method_field('DELETE') }}
+                                                                        {{ csrf_field() }}
+                                                                        <button type="submit" class="btn btn-danger btn-sm"
+                                                                            title="Delete Activity"
+                                                                            {{-- onclick="return confirm(&quot;Confirm delete?&quot;)"><i --}}
+                                                                            class="fa fa-trash-o" aria-hidden="true"></i>
+                                                                            Delete</button>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
